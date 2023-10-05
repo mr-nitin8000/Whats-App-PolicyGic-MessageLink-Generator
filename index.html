@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>WhatsApp Link Generator</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="logo" style="color: #fff">
+        WhatsApp Link Generater<sub style="font-size: 0.5rem"
+          >By MR.LUCKYYY</sub
+        >
+      </h1>
+      <div class="form">
+        <table>
+          <tr>
+            <td>
+              <label for="phone">Phone number:</label>
+            </td>
+            <td class="t2">
+              <input type="tel" id="phone" placeholder="Enter phone number" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="name">Name:</label>
+            </td>
+            <td class="t2">
+              <input type="text" id="name" placeholder="Enter name" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="vno">VEHICLE NO.:</label>
+            </td>
+            <td class="t2">
+              <input
+                type="text"
+                id="vno"
+                placeholder="Enter name"
+                value="RJ-14-"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="ddate">DUE DATE:</label>
+            </td>
+            <td class="t2">
+              <input type="date" id="ddate" placeholder="date" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="pre">PREMIUM:</label>
+            </td>
+            <td class="t2">
+              <input type="number" id="pre" placeholder="Premium" />
+            </td>
+          </tr>
+        </table>
+        <!-- <label class="in" for="message">Message:</label>
+        <textarea
+          class="in"
+          id="message"
+          placeholder="Enter message"
+        ></textarea> -->
+
+        <button class="submit" id="generate-link" onclick="sendWhatsApp()">
+          Generate link
+        </button>
+        <!-- <a id="whatsapp-link" href="#">WhatsApp link</a> -->
+      </div>
+      <div class="footer">
+        <p>© 2023 Mr.luckyy Inc.</p>
+      </div>
+    </div>
+    <script>
+      function generateWhatsAppLink(number, message, vehicle, date, pre) {
+        number = number.replace(/\D/g, "");
+        message = encodeURIComponent(message);
+        vehicle = encodeURIComponent(vehicle);
+        date = encodeURIComponent(date);
+        pre = encodeURIComponent(pre);
+
+        // construct the WhatsApp link
+        const link = `https://wa.me/+91${number}?text=dear+${message}+%0AYour+Vehicle+insurance+(${vehicle})+expires+on+${date}+and+renewal+premium+is+*Rs.${pre}*+Please+renew+the+insurance.%0A%0Aplease+send+us+your+*RC*+and+*Insurance*+copy+for+renewal+of+insurance%0A%0AContact+us+as+soon+as+possible.%0A%0AThanks+%0A%0AFrom+%0A*B.S.Kumawat*%0AContact+:-+7976869839%0AE-mail+++:-+1269819t@gmail.com`;
+        return link;
+      }
+
+      function sendWhatsApp() {
+        const number = document.getElementById("phone").value;
+        const message = document.getElementById("name").value;
+        const vehicle = document.getElementById("vno").value;
+        const date = document.getElementById("ddate").value;
+        const pre = document.getElementById("pre").value;
+        const link = generateWhatsAppLink(number, message, vehicle, date, pre);
+        // window.location.href = link;
+        window.open(link, "_blank");
+      }
+    </script>
+    <style>
+      body {
+        background-color: #075e54;
+        font-family: Arial, sans-serif;
+        color: #000000;
+        margin: 0;
+        padding: 0;
+        /* text-align: center */
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .t2 {
+        width: 70%;
+      }
+      .logo {
+        font-size: 36px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 20px;
+      }
+      .form {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+      }
+      .in,
+      label,
+      input {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: none;
+      }
+      input {
+        border: 1px solid black;
+        width: 90%;
+      }
+      .submit {
+        background-color: #128c7e;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+      }
+      .footer {
+        font-size: 12px;
+        text-align: center;
+        margin-top: 50px;
+        color: #fff;
+      }
+    </style>
+  </body>
+</html>
